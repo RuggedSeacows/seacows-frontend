@@ -1,0 +1,209 @@
+[
+  {
+    "inputs": [
+      { "internalType": "address", "name": "_weth", "type": "address" },
+      { "internalType": "contract SeacowsPairERC721", "name": "_erc721Template", "type": "address" },
+      { "internalType": "address payable", "name": "_protocolFeeRecipient", "type": "address" },
+      { "internalType": "uint256", "name": "_protocolFeeMultiplier", "type": "uint256" }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": false, "internalType": "contract ICurve", "name": "bondingCurve", "type": "address" },
+      { "indexed": false, "internalType": "bool", "name": "isAllowed", "type": "bool" }
+    ],
+    "name": "BondingCurveStatusUpdate",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": false, "internalType": "address", "name": "target", "type": "address" },
+      { "indexed": false, "internalType": "bool", "name": "isAllowed", "type": "bool" }
+    ],
+    "name": "CallTargetStatusUpdate",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [{ "indexed": false, "internalType": "address", "name": "poolAddress", "type": "address" }],
+    "name": "NewPair",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "internalType": "address", "name": "previousOwner", "type": "address" },
+      { "indexed": true, "internalType": "address", "name": "newOwner", "type": "address" }
+    ],
+    "name": "OwnershipTransferred",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": false, "internalType": "address", "name": "pair", "type": "address" },
+      { "indexed": false, "internalType": "bool", "name": "isDisabled", "type": "bool" }
+    ],
+    "name": "ProtocolFeeDisabled",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [{ "indexed": false, "internalType": "uint256", "name": "newMultiplier", "type": "uint256" }],
+    "name": "ProtocolFeeMultiplierUpdate",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [{ "indexed": false, "internalType": "address", "name": "recipientAddress", "type": "address" }],
+    "name": "ProtocolFeeRecipientUpdate",
+    "type": "event"
+  },
+  {
+    "inputs": [{ "internalType": "contract ICurve", "name": "", "type": "address" }],
+    "name": "bondingCurveAllowed",
+    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "uint256", "name": "_protocolFeeMultiplier", "type": "uint256" }],
+    "name": "changeProtocolFeeMultiplier",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "address payable", "name": "_protocolFeeRecipient", "type": "address" }],
+    "name": "changeProtocolFeeRecipient",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          { "internalType": "contract IERC20", "name": "token", "type": "address" },
+          { "internalType": "contract IERC721", "name": "nft", "type": "address" },
+          { "internalType": "contract ICurve", "name": "bondingCurve", "type": "address" },
+          { "internalType": "address payable", "name": "assetRecipient", "type": "address" },
+          { "internalType": "enum SeacowsPair.PoolType", "name": "poolType", "type": "uint8" },
+          { "internalType": "uint128", "name": "delta", "type": "uint128" },
+          { "internalType": "uint96", "name": "fee", "type": "uint96" },
+          { "internalType": "uint128", "name": "spotPrice", "type": "uint128" },
+          { "internalType": "uint256[]", "name": "initialNFTIDs", "type": "uint256[]" },
+          { "internalType": "uint256", "name": "initialTokenBalance", "type": "uint256" }
+        ],
+        "internalType": "struct SeacowsPairERC721Factory.CreateERC721ERC20PairParams",
+        "name": "params",
+        "type": "tuple"
+      }
+    ],
+    "name": "createPairERC20",
+    "outputs": [{ "internalType": "contract SeacowsPair", "name": "pair", "type": "address" }],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "contract IERC721", "name": "_nft", "type": "address" },
+      { "internalType": "contract ICurve", "name": "_bondingCurve", "type": "address" },
+      { "internalType": "address payable", "name": "_assetRecipient", "type": "address" },
+      { "internalType": "enum SeacowsPair.PoolType", "name": "_poolType", "type": "uint8" },
+      { "internalType": "uint128", "name": "_delta", "type": "uint128" },
+      { "internalType": "uint96", "name": "_fee", "type": "uint96" },
+      { "internalType": "uint128", "name": "_spotPrice", "type": "uint128" },
+      { "internalType": "uint256[]", "name": "_initialNFTIDs", "type": "uint256[]" }
+    ],
+    "name": "createPairETH",
+    "outputs": [{ "internalType": "contract SeacowsPair", "name": "pair", "type": "address" }],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "contract SeacowsPair", "name": "_pair", "type": "address" },
+      { "internalType": "bool", "name": "_isProtocolFeeDisabled", "type": "bool" }
+    ],
+    "name": "disableProtocolFee",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "erc721Template",
+    "outputs": [{ "internalType": "contract SeacowsPairERC721", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "owner",
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "protocolFeeMultiplier",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "protocolFeeRecipient",
+    "outputs": [{ "internalType": "address payable", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  { "inputs": [], "name": "renounceOwnership", "outputs": [], "stateMutability": "nonpayable", "type": "function" },
+  {
+    "inputs": [
+      { "internalType": "contract ICurve", "name": "bondingCurve", "type": "address" },
+      { "internalType": "bool", "name": "isAllowed", "type": "bool" }
+    ],
+    "name": "setBondingCurveAllowed",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "address", "name": "newOwner", "type": "address" }],
+    "name": "transferOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "weth",
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "contract ERC20", "name": "token", "type": "address" },
+      { "internalType": "uint256", "name": "amount", "type": "uint256" }
+    ],
+    "name": "withdrawERC20ProtocolFees",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "withdrawETHProtocolFees",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  { "stateMutability": "payable", "type": "receive" }
+]

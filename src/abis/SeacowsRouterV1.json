@@ -1,0 +1,71 @@
+[
+  {
+    "inputs": [{ "internalType": "address", "name": "_weth", "type": "address" }],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          { "internalType": "contract ISeacowsPairERC721", "name": "pair", "type": "address" },
+          { "internalType": "uint256[]", "name": "nftIds", "type": "uint256[]" }
+        ],
+        "internalType": "struct SeacowsRouterV1.ERC721PairSwap",
+        "name": "_swap",
+        "type": "tuple"
+      },
+      { "internalType": "uint256", "name": "_minOutput", "type": "uint256" },
+      { "internalType": "address payable", "name": "_recipient", "type": "address" }
+    ],
+    "name": "swapNFTsForTokenERC721",
+    "outputs": [{ "internalType": "uint256", "name": "outputAmount", "type": "uint256" }],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          { "internalType": "contract ISeacowsPairERC721", "name": "pair", "type": "address" },
+          { "internalType": "uint256[]", "name": "nftIds", "type": "uint256[]" }
+        ],
+        "internalType": "struct SeacowsRouterV1.ERC721PairSwap[]",
+        "name": "_swapList",
+        "type": "tuple[]"
+      },
+      { "internalType": "uint256", "name": "_tokenAmount", "type": "uint256" },
+      { "internalType": "address", "name": "_recipient", "type": "address" }
+    ],
+    "name": "swapTokenForNFTsERC721",
+    "outputs": [{ "internalType": "uint256", "name": "remainingValue", "type": "uint256" }],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          { "internalType": "contract ISeacowsPairERC721", "name": "pair", "type": "address" },
+          { "internalType": "uint256[]", "name": "nftIds", "type": "uint256[]" }
+        ],
+        "internalType": "struct SeacowsRouterV1.ERC721PairSwap[]",
+        "name": "_swapList",
+        "type": "tuple[]"
+      },
+      { "internalType": "address", "name": "_recipient", "type": "address" }
+    ],
+    "name": "swapTokenForNFTsETHERC721",
+    "outputs": [{ "internalType": "uint256", "name": "remainingValue", "type": "uint256" }],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "weth",
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  { "stateMutability": "payable", "type": "receive" }
+]
